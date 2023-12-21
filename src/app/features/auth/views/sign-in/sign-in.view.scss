@@ -1,0 +1,17 @@
+:host {
+  h1 {
+    text-align: center;
+  }
+  display: block;
+  form {
+    max-width: 350px;
+    margin-inline: auto;
+    padding-top: 3rem;
+    gap: 1rem;
+  }
+
+  button,
+  mat-form-field {
+    width: 100%;
+  }
+}

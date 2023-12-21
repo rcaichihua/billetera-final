@@ -1,0 +1,21 @@
+<ng-container *ngIf="control.hasError('required')">
+  Este campo es requerido
+</ng-container>
+<ng-container *ngIf="control.hasError('minlength')">
+  Debe ingresar caracteres como
+  {{ control.getError("minlength").requiredLength }}
+  minimo
+</ng-container>
+<ng-container *ngIf="control.hasError('maxlength')">
+  Debe ingresar caracteres como
+  {{ control.getError("maxlength").requiredLength }}
+  maximo
+</ng-container>
+<ng-container *ngIf="control.hasError('email')">
+  {{ control.getError("email") }}
+</ng-container>
+<ng-container *ngIf="control.hasError('range')">
+  El minimo valor aceptable es
+  {{ control.getError("range").min }} y el maximo valor aceptable es
+  {{ control.getError("range").max }}
+</ng-container>

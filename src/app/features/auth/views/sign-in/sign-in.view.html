@@ -1,0 +1,23 @@
+<form [formGroup]="form" (ngSubmit)="signIn()">
+  <h1>Billetera virtual</h1>
+  <mat-form-field appearance="outline">
+    <mat-label>Correo</mat-label>
+    <input matInput type="email" formControlName="email">
+    <mat-icon matSuffix>person</mat-icon>
+    <mat-error>
+      <app-error-message [control]="form.controls.email"></app-error-message>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Contraseña</mat-label>
+    <input matInput [type]="showPassword ? 'text' : 'password' " formControlName="password" />
+    <button type="button" matSuffix mat-icon-button (click)="showPassword=!showPassword">
+      <mat-icon>{{showPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error>
+      <app-error-message [control]="form.controls.password"></app-error-message>
+    </mat-error>
+  </mat-form-field>
+  <button type="submit" mat-flat-button color="primary">Ingresar</button>
+</form>

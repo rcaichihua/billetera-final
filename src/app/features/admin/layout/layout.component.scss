@@ -1,0 +1,9 @@
+:host {
+  display: block;
+}
+mat-drawer-container {
+  height: calc(100vh - 64px);
+  mat-drawer {
+    width: 220px;
+  }
+}
