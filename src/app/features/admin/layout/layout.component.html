@@ -1,18 +1,37 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button mat-icon-button (click)="drawer.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    Bienvenido
+    <div>
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Bienvenido</span>
+    </div>
+    <!-- TODO! Mostrar el usuario-->
+    <button mat-flat-button color="primary" (click)="logout()">Cerrar sesion</button>
   </mat-toolbar-row>
 </mat-toolbar>
 
 <mat-drawer-container autosize>
   <mat-drawer #drawer mode="side" [opened]="true">
-    Menu
+    <mat-action-list role="list">
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>payments</mat-icon>
+        <span>Billetera</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>send_money</mat-icon>
+        <span>Movimiento</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>category</mat-icon>
+        <span>Categorias</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-action-list>
   </mat-drawer>
   <mat-drawer-content>
-
     <router-outlet></router-outlet>
   </mat-drawer-content>
 

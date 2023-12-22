@@ -1,12 +1,35 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, InjectionToken, inject } from '@angular/core';
 import { Token } from '../models/token.model';
 import { StorageService } from '../../../core/services/storage.service';
+import { Router } from '@angular/router';
+
+export type AppSessionConfig = {
+  redirectLoginPath: string;
+  redirectLogoutPath: string;
+}
+
+export const WALL_SESSION_CONFIG = new InjectionToken<AppSessionConfig>(
+  'WALL_SESSION_CONFIG',
+  {
+    providedIn: 'root',
+    factory: () => ({
+      redirectLoginPath: '',
+      redirectLogoutPath: '',
+    }),
+  });
+
+export const provideSessionConfig = (value: AppSessionConfig) => ({
+  provide: WALL_SESSION_CONFIG,
+  useValue: value,
+})
 
 @Injectable({
   providedIn: 'root'
 })
-export class SessionService {
+export class AppSessionService {
   private storage = inject(StorageService);
+  private router = inject(Router);
+  private config: AppSessionConfig = inject(WALL_SESSION_CONFIG);
 
   accessToken?: Token;
   refreshToken?: Token;
@@ -34,6 +57,8 @@ export class SessionService {
 
     this.storage.set('accessToken', this.accessToken.jwt2);
     this.storage.set('refreshToken', this.refreshToken.jwt2);
+
+    this.router.navigateByUrl(this.config.redirectLoginPath);
   }
 
   destroy() {
@@ -42,5 +67,7 @@ export class SessionService {
 
     this.storage.set('accessToken', this.accessToken);
     this.storage.set('refreshToken', this.refreshToken);
+
+    this.router.navigateByUrl(this.config.redirectLogoutPath);
   }
 }

@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-list',
+  selector: 'app-create',
   standalone: true,
   imports: [
     CommonModule,
   ],
-  template: `<p>list category works!</p>`,
-  styleUrl: './list.component.scss',
+  template: `<p>create works!</p>`,
+  styleUrl: './create.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListComponent { }
+export default class CreateComponent { }

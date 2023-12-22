@@ -10,8 +10,7 @@ import { SignInDto } from '../../dto/sign-in.dto';
 import { AppValidators } from '../../../../common/forms/validators';
 import { ErrorMessageComponent } from '../../../../common/forms/components/error-message/error-message.component';
 import { environment } from '../../../../../environments/environment.development';
-import { SessionService } from '../../services/session.service';
-import { Router } from '@angular/router';
+import { AppSessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -32,8 +31,7 @@ import { Router } from '@angular/router';
 export default class SignInComponent {
   private fb = inject(FormBuilder);
   private authHttp = inject(AuthHttp);
-  private session = inject(SessionService);
-  private router = inject(Router);
+  private session = inject(AppSessionService);
   showPassword = false;
 
   form: FormGroup<{
@@ -53,6 +51,5 @@ export default class SignInComponent {
     this.authHttp.getToken(this.form.value as SignInDto)
       //.subscribe(console.log)
       .subscribe((tokens: any) => this.session.create(tokens.accessToken, tokens.refreshToken));
-    this.router.navigateByUrl('/admin');
   }
 }
