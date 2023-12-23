@@ -1,4 +1,5 @@
-<button (click)="load()">Recargar</button>
+<button mat-flat-button color="primary" class="mb-2" routerLink="./create">Nuevo</button>
+
 <table mat-table [dataSource]="wallets" class="mat-elevation-z8">
   <!-- Name Column -->
   <ng-container matColumnDef="id">

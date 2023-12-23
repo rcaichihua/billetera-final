@@ -7,7 +7,7 @@ import { tokenInterceptor } from '../auth/interceptors/token.interceptor';
 import { baseUrlInterceptor } from '../../core/interceptors/base-url.interceptor';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'users', pathMatch: 'full' },
+  { path: '', redirectTo: 'wallets', pathMatch: 'full' },
   {
     path: '',
     component: LayoutComponent,

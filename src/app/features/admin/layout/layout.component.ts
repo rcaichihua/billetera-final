@@ -8,6 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppSessionService } from '../../auth/services/session.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-layout',
@@ -28,6 +29,10 @@ import { MatListModule } from '@angular/material/list';
 })
 export class LayoutComponent {
   private session = inject(AppSessionService);
+
+  get userName() {
+    return environment.auth.email;
+  }
 
   logout() {
     this.session.destroy();

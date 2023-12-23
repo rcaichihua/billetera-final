@@ -22,8 +22,6 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   return next(getRequest()).pipe(
     catchError((error: HttpErrorResponse) => {
       if (error.status === 401) {
-
-        // TODO: refactorizar tipado
         return authHttp.refreshToken().pipe(
           tap((tokens: any) => session.update(tokens.accessToken, tokens.refreshToken)),
           catchError((err) => {
