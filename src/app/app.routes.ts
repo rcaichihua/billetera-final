@@ -8,7 +8,7 @@ export const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
   {
     path: 'auth',
-    providers: [provideHttpClient(), AuthHttp],
+    //providers: [provideHttpClient(), AuthHttp],
     loadChildren: () => import('./features/auth/auth.routes'),
   },
   {

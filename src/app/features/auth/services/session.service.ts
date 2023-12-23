@@ -61,6 +61,14 @@ export class AppSessionService {
     this.router.navigateByUrl(this.config.redirectLoginPath);
   }
 
+  update(accessToken: string, refreshToken: string) {
+    this.accessToken = new Token(accessToken);
+    this.refreshToken = new Token(refreshToken);
+
+    this.storage.set('accessToken', this.accessToken.jwt2);
+    this.storage.set('refreshToken', this.refreshToken.jwt2);
+  }
+
   destroy() {
     this.accessToken = undefined;
     this.refreshToken = undefined;

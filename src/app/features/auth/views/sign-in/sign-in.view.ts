@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -26,7 +26,7 @@ import { AppSessionService } from '../../services/session.service';
   ],
   templateUrl: './sign-in.view.html',
   styleUrl: './sign-in.view.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export default class SignInComponent {
   private fb = inject(FormBuilder);

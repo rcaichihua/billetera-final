@@ -1,12 +1,22 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { SignInDto } from '../dto/sign-in.dto';
+import { AppSessionService } from '../services/session.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthHttp {
   private http = inject(HttpClient);
+  private session = inject(AppSessionService);
 
   getToken(body: SignInDto) {
-    return this.http.post('http://localhost:3000/v2/auth/sign-in', body);
+    return this.http.post('auth/sign-in', body);
+  }
+
+  refreshToken() {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.session.refreshToken?.jwt2}`,
+    })
+
+    return this.http.post('auth/refresh/token', {}, { headers });
   }
 }
