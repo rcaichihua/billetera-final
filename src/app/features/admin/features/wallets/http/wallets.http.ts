@@ -4,6 +4,7 @@ import { AppSessionService } from '../../../../auth/services/session.service';
 import { WalletItemResponse } from '../interfaces/wallet.response';
 import { Observable, map } from 'rxjs';
 import { WalletModel } from '../models/wallet.model';
+import { WalletDTO } from '../interfaces/wallet.dto';
 
 @Injectable()
 export class WalletsHttp {
@@ -20,7 +21,7 @@ export class WalletsHttp {
       .pipe(
         map((res) => res.map(item => new WalletModel(item))));
   }
-  create(body: any) {
+  create(body: WalletDTO) {
     return this.http.post(this.endpoint, body);
   }
 }

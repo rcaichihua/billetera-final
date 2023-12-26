@@ -21,7 +21,7 @@ import { RouterLink } from '@angular/router';
 export class ListComponent implements OnInit {
   private walletsHttp = inject(WalletsHttp);
 
-  displayedColumns: string[] = ['id', 'name', 'amount'];
+  displayedColumns: string[] = ['id', 'name', 'amount', 'actualizar'];
 
   wallets: WalletModel[] = [];
 
@@ -31,5 +31,13 @@ export class ListComponent implements OnInit {
 
   load() {
     this.walletsHttp.getAll().subscribe(wallets => { console.log(wallets), this.wallets = wallets; }, error => { console.error('Error', error) });
+  }
+
+  updateWallet(wallet: WalletModel) {
+
+  }
+
+  getTotalAmount(): number {
+    return this.wallets.reduce((acc, wallet) => acc + wallet.amount, 0);
   }
 }

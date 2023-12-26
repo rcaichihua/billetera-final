@@ -22,6 +22,7 @@
     "@angular/router": "^17.0.0",
     "@auth0/angular-jwt": "^5.2.0",
     "crypto-js": "^4.2.0",
+    "ngx-mask": "^17.0.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"

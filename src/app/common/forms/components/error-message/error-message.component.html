@@ -6,6 +6,7 @@
   {{ control.getError("minlength").requiredLength }}
   minimo
 </ng-container>
+<!-- positiveNumber -->
 <ng-container *ngIf="control.hasError('maxlength')">
   Debe ingresar caracteres como
   {{ control.getError("maxlength").requiredLength }}
@@ -18,4 +19,7 @@
   El minimo valor aceptable es
   {{ control.getError("range").min }} y el maximo valor aceptable es
   {{ control.getError("range").max }}
+</ng-container>
+<ng-container *ngIf="control.hasError('positiveNumber')">
+  Debe ingresar un monto mayor a cero
 </ng-container>
