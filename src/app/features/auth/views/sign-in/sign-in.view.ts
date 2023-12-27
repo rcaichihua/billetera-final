@@ -11,6 +11,7 @@ import { AppValidators } from '../../../../common/forms/validators';
 import { ErrorMessageComponent } from '../../../../common/forms/components/error-message/error-message.component';
 import { environment } from '../../../../../environments/environment.development';
 import { AppSessionService } from '../../services/session.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sign-in',
@@ -23,6 +24,7 @@ import { AppSessionService } from '../../services/session.service';
     MatButtonModule,
     ReactiveFormsModule,
     ErrorMessageComponent,
+    MatSnackBarModule
   ],
   templateUrl: './sign-in.view.html',
   styleUrl: './sign-in.view.scss',
@@ -32,6 +34,7 @@ export default class SignInComponent {
   private fb = inject(FormBuilder);
   private authHttp = inject(AuthHttp);
   private session = inject(AppSessionService);
+  private snackBar = inject(MatSnackBarModule)
   showPassword = false;
 
   form: FormGroup<{
@@ -50,6 +53,6 @@ export default class SignInComponent {
     //this.authHttp.getToken(this.form.getRawValue());
     this.authHttp.getToken(this.form.value as SignInDto)
       //.subscribe(console.log)
-      .subscribe((tokens: any) => this.session.create(tokens.accessToken, tokens.refreshToken));
+      .subscribe((tokens: any) => this.session.create(tokens.accessToken, tokens.refreshToken))
   }
 }

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { SignInDto } from '../dto/sign-in.dto';
 import { AppSessionService } from '../services/session.service';
+import { catchError, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthHttp {
@@ -9,7 +10,11 @@ export class AuthHttp {
   private session = inject(AppSessionService);
 
   getToken(body: SignInDto) {
-    return this.http.post('auth/sign-in', body);
+    return this.http.post('auth/sign-in', body).pipe(
+      catchError(error => {
+        return throwError(error);
+      })
+    );;
   }
 
   refreshToken() {

@@ -21,7 +21,16 @@ export class WalletsHttp {
       .pipe(
         map((res) => res.map(item => new WalletModel(item))));
   }
+  getOne(id: number): Observable<WalletModel> {
+    return this.http.get<WalletItemResponse>(`${this.endpoint}/${id}`)
+      .pipe(
+        map((res) => new WalletModel(res))
+      )
+  }
   create(body: WalletDTO) {
     return this.http.post(this.endpoint, body);
+  }
+  update(id: number, body: WalletDTO) {
+    return this.http.put(`${this.endpoint}/${id}`, body);
   }
 }
